@@ -46,8 +46,9 @@ def populate_listbox(interval_secs=1.0):
     """Dummy data feed (randomized)."""
     random.seed()
     while not populate_listbox_stop_event.is_set():
+        timestamp = dt.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
         temperature = float(random.randint(180, 280)) + random.random()
-        temperature_entry = f'{temperature:.2f} K ({dt.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")})'
+        temperature_entry = f'{temperature:.2f} K ({timestamp})'
         lbox.insert(END, temperature_entry)
         lbox.see(END)
         if lbox.index(END) > MAX_DATA_ENTRIES:
