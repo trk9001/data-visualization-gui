@@ -72,4 +72,13 @@ btn.grid(column=2, row=2, sticky='se')
 
 ttk.Sizegrip(main_frame).grid(column=2, row=3, sticky='se')
 
+
+def handle_quit():
+    """Callback to handle window-quitting after cleaning up."""
+    trigger_populate_listbox_stop()  # Make sure the other thread is done
+    root.destroy()
+
+
+root.protocol('WM_DELETE_WINDOW', handle_quit)
+
 root.mainloop()
