@@ -62,7 +62,8 @@ threading.Thread(target=populate_listbox).start()
 
 def trigger_populate_listbox_stop():
     """Callback to terminate the data-feed thread."""
-    populate_listbox_stop_event.set()
+    if not populate_listbox_stop_event.is_set():
+        populate_listbox_stop_event.set()
 
 
 btn = ttk.Button(main_frame, text='Stop Feed')
